@@ -1,8 +1,8 @@
 /* @flow */
 
 import * as lib from "../"
-import pool from "../"
-import type { Lifecycle } from "../"
+import { pool } from "../"
+import type { Lifecycle, Pool } from "../"
 import test from "blue-tape"
 
 test("test baisc", async test => {

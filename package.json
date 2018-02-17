@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "name": "pool.flow",
   "description":
     "Generic object pool with type friendly API for usage with flow",

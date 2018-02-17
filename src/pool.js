@@ -33,7 +33,7 @@ class Pool<a: Recycle> {
   }
 }
 
-const pool = <a: Recycle>(constructor: Class<a>): Pool<a> =>
-  new Pool(constructor)
+export type { Pool }
 
-export default pool
+export const pool = <a: Recycle>(constructor: Class<a>): Pool<a> =>
+  new Pool(constructor)

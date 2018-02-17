@@ -13,8 +13,8 @@ Generic object pool with type friendly API for usage with flow.
 Rest of the the document & provided code examples assumes that library is installed (with yarn or npm) and imported as follows:
 
 ```js
-import pool from "pool.flow"
-import type { Lifecycle } from "pool.flow"
+import { pool } from "pool.flow"
+import type { Lifecycle, Pool } from "pool.flow"
 ```
 
 You can define your class and pool for it's instances as follows:

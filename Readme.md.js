@@ -1,7 +1,7 @@
 // @flow
 
-import pool from "pool.flow"
-import type { Lifecycle } from "pool.flow"
+import { pool } from "pool.flow"
+import type { Lifecycle, Pool } from "pool.flow"
 
 class Point {
   x: number
