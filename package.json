@@ -1,11 +1,12 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "pool.flow",
   "description":
     "Generic object pool with type friendly API for usage with flow",
   "keywords": ["pool.flow", "typed", "flow"],
   "main": "lib/pool",
   "module": "src/pool",
+  "unpkg": "dist/pool",
   "author": "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)",
   "repository": "https://github.com/Gozala/pool.flow",
   "license": "MIT",
@@ -50,7 +51,9 @@
       "pool.flow": "src/pool"
     },
     "pro": true,
-    "babel": true,
+    "babel": {
+      "env": "development"
+    },
     "plugins": ["alias-quokka-plugin"]
   },
   "dependencies": {}
