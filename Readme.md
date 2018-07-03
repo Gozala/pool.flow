@@ -13,8 +13,8 @@ Generic object pool with type friendly API for usage with flow.
 Rest of the the document & provided code examples assumes that library is installed (with yarn or npm) and imported as follows:
 
 ```js
-import { pool } from "pool.flow"
-import type { Lifecycle, Pool } from "pool.flow"
+import Pool from "pool.flow"
+import type { Lifecycle } from "pool.flow"
 ```
 
 You can define your class and pool for it's instances as follows:
@@ -25,7 +25,7 @@ class Point {
   y: number
   // You'll need to create an object pool by calling `pool(Point)`. You can save
   // a pool anywhere, here we use static field of the class itself.
-  static pool = pool(Point)
+  static pool = new Pool()
   // Given that objects in the pool going to be recycled it is useful to use
   // something other than object identity for an instance identity. Library
   // provides opaque `Lifecycle` type for that purpose.
@@ -49,7 +49,7 @@ class Point {
   // instead you can define static function to do the construction + initialization
   // that under the hood will use pool to allocate an instance.
   static new(x: number, y: number): Point {
-    const self = Point.pool.new()
+    const self = Point.pool.new(Point)
     self.x = x
     self.y = y
     return self

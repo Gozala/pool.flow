@@ -1,13 +1,13 @@
 // @flow
 
-import { pool } from "pool.flow"
-import type { Lifecycle, Pool } from "pool.flow"
+import Pool from "pool.flow"
+import type { Lifecycle } from "pool.flow"
 
 class Point {
   x: number
   y: number
   ref: Lifecycle
-  static pool = pool(Point)
+  static pool = new Pool()
   delete() {
     delete this.x
     delete this.y
@@ -24,7 +24,7 @@ class Point {
     }
   }
   static new(x: number, y: number): Point {
-    const self = Point.pool.new()
+    const self = Point.pool.new(Point)
     self.x = x
     self.y = y
     return self

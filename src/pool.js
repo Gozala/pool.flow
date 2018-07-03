@@ -5,26 +5,25 @@
 // previous lifecycle is attempted.
 export opaque type Lifecycle = number
 
-// To define a class used in the pool you must implement `Recycle` interface
-// meaning define recycle method.
-export interface Recycle {
-  constructor(): mixed;
-  recycle(Lifecycle): mixed;
+export type Instance = {
+  recycle(Lifecycle): mixed
 }
 
-class Pool<a: Recycle> {
-  static Lifecycle: Lifecycle
-  static Recycle: Recycle
+export default class Pool<a: Instance> {
   lifecycle: Lifecycle = 1
   pool: a[] = []
-  instanceConstructor: Class<a>
-
-  constructor(constructor: Class<a>) {
-    this.instanceConstructor = constructor
+  static pool<a: Instance>(constructor: Class<a>): Pool<a> {
+    return new Pool()
   }
-  new(): a {
+  static new<a: Instance>(pool: Pool<a>, constructor: Class<a>): a {
+    return pool.new(constructor)
+  }
+  static delete<a: Instance>(pool: Pool<a>, instance: a): void {
+    return pool.delete(constructor)
+  }
+  new(constructor: Class<a>): a {
     const instance =
-      this.pool.length > 0 ? this.pool.shift() : new this.instanceConstructor()
+      this.pool.length > 0 ? this.pool.shift() : new constructor()
     instance.recycle(this.lifecycle++)
     return instance
   }
@@ -32,8 +31,3 @@ class Pool<a: Recycle> {
     this.pool.push(instance)
   }
 }
-
-export type { Pool }
-
-export const pool = <a: Recycle>(constructor: Class<a>): Pool<a> =>
-  new Pool(constructor)

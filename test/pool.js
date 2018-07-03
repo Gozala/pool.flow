@@ -1,13 +1,13 @@
-/* @flow */
+// @flow
 
 import * as lib from "../"
-import { pool } from "../"
-import type { Lifecycle, Pool } from "../"
+import Pool from "../"
+import type { Lifecycle } from "../"
 import test from "blue-tape"
 
 test("test baisc", async test => {
   test.isEqual(typeof lib, "object")
-  test.isEqual(typeof pool, "function", "default export is a function")
+  test.isEqual(typeof Pool, "function", "default export is a function")
 })
 
 test("test example", async test => {
@@ -15,7 +15,7 @@ test("test example", async test => {
     x: number
     y: number
     ref: Lifecycle
-    static pool = pool(Point)
+    static pool = new Pool()
     delete() {
       delete this.x
       delete this.y
@@ -32,7 +32,7 @@ test("test example", async test => {
       }
     }
     static new(x: number, y: number): Point {
-      const self = Point.pool.new()
+      const self = Point.pool.new(Point)
       self.x = x
       self.y = y
       return self
