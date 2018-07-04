@@ -3,7 +3,7 @@
 // Use of Lifecycle identifier is encouraged in the methods of the objects that
 // are recycled as it allows catching errors when interactio with an object from
 // previous lifecycle is attempted.
-export opaque type Lifecycle = number
+export opaque type Lifecycle: number = number
 
 export type Instance = {
   recycle(Lifecycle): mixed
